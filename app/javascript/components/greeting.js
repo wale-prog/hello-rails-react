@@ -1,9 +1,17 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchGreeting } from '../redux/GreetingSlice'
 
 const Greeting = () => {
+  const greeting = useSelector(state => state.greeting)
+  const dispatch = useDispatch()
+  const handleClick = () => {
+    dispatch(fetchGreeting())
+  };
   return (
     <div>
-      <h1>Hello World</h1>
+      <button onClick={handleClick}>Refresh</button>
+      <p>{greeting.message}</p>
     </div>
   )
 }
